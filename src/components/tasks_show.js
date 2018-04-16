@@ -14,7 +14,7 @@ class TasksShow extends Component {
     }
 
     onSubmit = (props) =>{
-            this.props.updateTask(props);
+            this.props.updateTask(props, this.props.params.id);
     }
 
     onDeleteClick = () => {
@@ -27,7 +27,7 @@ class TasksShow extends Component {
     
     render (){
         const { task } = this.props;
-        const  { fields: { title, categories, content },handleSubmit } = this.props;
+        const  { fields: { title, content },handleSubmit } = this.props;
 
         if(!task){
             return <div>Loading...</div>
@@ -87,7 +87,7 @@ TasksShow = connect(mapStateToProps, { fetchTask, deleteTask})(TasksShow);
 
 export default reduxForm({
     form: 'TasksNewForm',
-    fields: ['title','categories','content'],
+    fields: ['title','content'],
     validate
 }, null, { updateTask })(TasksShow);
 

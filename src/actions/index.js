@@ -6,12 +6,11 @@ export const FETCH_TASK = 'FETCH_TASK';
 export const UPDATE_TASK = 'UPDATE_TASK';
 export const DELETE_TASK = 'DELETE_TASK';
 
-const ROOT_URL = 'http://reduxblog.herokuapp.com/api';
-const API_KEY = '?key=32589nhymjukilopq';
+const ROOT_URL = 'https://still-inlet-92099.herokuapp.com';
 
 
 export function fetchTasks() {
-	const request =  axios.get(`${ROOT_URL}/posts${API_KEY}`);
+	const request =  axios.get(`${ROOT_URL}/posts`);
 		
 		return {
 			type: FETCH_TASKS,
@@ -20,7 +19,7 @@ export function fetchTasks() {
 }
 
 export function createTask(props){
-	const request = axios.post(`${ROOT_URL}/posts${API_KEY}`,props);
+	const request = axios.post(`${ROOT_URL}/posts`,props);
 
 	return{
 		type: CREATE_TASK,
@@ -29,7 +28,7 @@ export function createTask(props){
 }
 
 export function fetchTask(id){
-	const request =  axios.get(`${ROOT_URL}/posts/${id}${API_KEY}`);
+	const request =  axios.get(`${ROOT_URL}/posts/` + id );
 
 	return {
 		type: FETCH_TASK,
@@ -37,8 +36,8 @@ export function fetchTask(id){
 	}
 }
 
-export function updateTask(props){
-	const request = axios.post(`${ROOT_URL}/posts${API_KEY}`,props);
+export function updateTask(props, id){
+	const request = axios.put(`${ROOT_URL}/posts/` + id,props);
 
 	return{
 		type: UPDATE_TASK,
@@ -47,7 +46,7 @@ export function updateTask(props){
 }
 
 export function deleteTask(id){
-	const request =  axios.delete(`${ROOT_URL}/posts/${id}${API_KEY}`);
+	const request =  axios.delete(`${ROOT_URL}/posts` + id);
 
 	return {
 		type: DELETE_TASK,
